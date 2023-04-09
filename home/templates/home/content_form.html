@@ -22,12 +22,14 @@
                <!-- Category -->
                <div class="form-group">
                  <label for="content_category">Select Category</label>
-                 <input value="{{content.category.name}}" name="category" list="" type="hidden"/>
-                 <select id="content_category" class="form-control" id="content_category">
-                     {% for category in categories %}
-                     <option value="{{category.name}}">{{category.name}}</option>
-                     {% endfor %}
-                 </select>
+                 <input value="{{content.category.name}}" name="category" list="category-list" placeholder="Double click to select"/>
+                 <datalist id="category-list">
+                   <select id="content_category" class="form-control">
+                       {% for category in categories %}
+                       <option value="{{category.name}}">{{category.name}}</option>
+                       {% endfor %}
+                   </select>
+                 </datalist>
                </div>
                <!-- Title -->
                <div class="form-group">
