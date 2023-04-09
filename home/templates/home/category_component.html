@@ -1,0 +1,14 @@
+<h3>Category</h3>
+    <hr />
+    <div>
+       <p><a href="{% url 'home' %}">All</a></p>
+    </div>
+
+    {% for category in categories %}
+        <div>
+        <p>
+            <a href="{% url 'home' %}?q={{ category.name }}">{{ category.name }}</a>
+
+        </p>
+        </div>
+    {% endfor %}

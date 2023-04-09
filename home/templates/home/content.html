@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="profile-page layout layout--2" style="margin-bottom: 5%; margin-top: 5%;">
+  <div class="container">
+    <!-- Room Start -->
+    <div class="">
+      <div class="">
+        <div class="">
+          <a href="{% url 'home' %}">
+            Go Back
+          </a>
+          <h3>Posts</h3>
+        </div>
+        {% if content.host == request.user %}
+        <div class="">
+          <a href="{% url 'update-content' content.id %}">
+           edit
+          </a>
+          <a href="{% url 'delete-content' content.id %}">
+            remove
+          </a>
+        </div>
+        {% endif %}
+      </div>
+
+
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="" class="img-fluid rounded-start" alt="">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ content.name }}</h5>
+              <small>created by {{content.host.username}}</small>
+              <p class="card-text">{{ content.description }}</p>
+              <p class="card-text"><small class="text-body-secondary">{{content.create|timesince}} ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {% for comment in content_comments %}
+      <div class="card border-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">"{{ comment.user.username }}"<small class="text-body-secondary"> replied {{comment.create|timesince}} ago</small></div>
+        <div class="card-body text-secondary">
+          <p class="card-text">{{comment.body}}</p>
+        </div>
+        {% if request.user == comment.user %}
+                <a href="{% url 'delete-comment' comment.id %}">
+                  remove
+                </a>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <div class="room__comment">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input name="body" placeholder="Write your comment here..." />
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

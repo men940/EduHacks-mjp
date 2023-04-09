@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="">
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+      
+      </div>
+      <div class="col-6">
+        <h3>Create/Update content</h3>
+           
+             <form method="POST">
+               {% csrf_token %}
+               <!-- Image -->
+               <div class="form-group">
+                 <label for="exampleFormControlFile1">Image</label>
+                 <input type="file" class="form-control-file" id="photo" name="photo" >
+               </div>
+     
+               <!-- Category -->
+               <div class="form-group">
+                 <label for="content_category">Select Category</label>
+                 <input value="{{content.category.name}}" name="category" list="" type="hidden"/>
+                 <select id="content_category" class="form-control" id="content_category">
+                     {% for category in categories %}
+                     <option value="{{category.name}}">{{category.name}}</option>
+                     {% endfor %}
+                 </select>
+               </div>
+               <!-- Title -->
+               <div class="form-group">
+                 <label for="content_name">Title</label><br>
+                 {{form.name}}
+               </div>
+               
+               <div class="form-group">
+                 <label for="content_description">Description</label><br>
+                 {{form.description}}
+               </div>
+     
+               <div class="">
+                 <button type="" class="btn btn-primary"><a class="" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+                 </button>
+                 <button type="submit" class="btn btn-primary">Submit</button>
+               </div>
+             </form>
+        </div>
+      <div class="col">
+      
+      </div>
+
+    </div>
+  </div>
+</main>
+{% endblock content %}
+
+
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label"
+      >Uername:</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="email"
+        class="form-control"
+        id="username"
+        name="email"
+        placeholder="e.g. test@test.com"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label"
+      >Password</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        id="inputPassword3"
+        placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+      />
+    </div>
+  </div>
+  <button class="btn btn--main" type="submit">Login</button>
+</form>

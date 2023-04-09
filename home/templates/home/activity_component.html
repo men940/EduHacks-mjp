@@ -1,0 +1,11 @@
+<h3>Recent Posting</h3>
+<hr>
+{% for comment in content_comments %}
+  <div>
+    <small> <a href="{% url 'user-profile' comment.user.id %}"> @{{ comment.user }} </a> {{ comment.create }} </small>
+    <small>replied to "{{ comment.room }}"</small>
+    <p>{{ comment.body }}</p>
+  </div>
+  <hr>
+{% endfor %}
+</div>

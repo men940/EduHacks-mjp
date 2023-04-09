@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="">
+  <div class="">
+    <div class="">
+      <div class="">
+        <div class="">
+          <h3>{{user.name}}</h3>
+          <p>@{{user.username}}</p>
+          {% if request.user == user %}
+          <a href="{% url 'update-user' %}" class="">Edit Profile</a>
+          {% endif %}
+        </div>
+        <div class="">
+          <h3>About</h3>
+          <p>
+            {{user.bio}}
+          </p>
+        </div>
+      </div>
+
+      <div class="">
+        <div>
+          <h2>Contents by @{{user.name }}</a>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

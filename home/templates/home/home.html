@@ -1,0 +1,32 @@
+{% extends 'main.html' %} 
+
+{% block content %}
+
+
+<div class="home-container">
+
+  <div class="row">
+    <div class="col-6 col-md-4"></div>
+    <div class="col-6 col-md-4"></div>
+    <div class="col-6 col-md-4"></div>
+  </div>
+
+
+  <div class="row justify-content-around">
+    <div class="col-2">
+      {% include 'home/category_component.html' %}
+    </div>
+    
+    <div class="col-8">
+      <h3>Let's Post
+        <small style="font-size: 15px;"><a class="" href="{% url 'create-content' %}">
+          Create 
+        </a></small>
+          </h3>
+      <hr>
+      {% include 'home/contents_component.html' %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-4">
+        <h3>Edit your profile</h3>
+        <div class="">
+            <form class="" action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+    
+              {% for field in form %}
+              <div class="form__group">
+                <label for="profile_pic">{{field.label}}</label>
+                {{field}}
+              </div>
+              {% endfor %}
+    
+    
+              <div class="form__action">
+                <a href="{% url 'home' %}">Cancel</a>
+                <button class="btn btn--main" type="submit">Update</button>
+              </div>
+            </form>
+        </div>
+      </div>
+      <div class="col-4">
+        {% for content in contents %}
+            {% if content.host.email == request.user.email %}
+            <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                <img src="" class="img-fluid rounded-start" alt="">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'content' content.id %}">{{content.name}}</a></h5>
+                    <p class="card-text">{{ content.category.name }} <small>by {{content.host.username}} / {{content.host.school}}</small></p>
+                    
+                    <p class="card-text">{{ content.description }}</p>
+                    <p class="card-text"><small class="text-body-secondary">{{content.create|timesince}} ago</small></p>
+                    <a href="{% url 'update-content' content.id %}">
+                        edit</a>
+                    <a href="{% url 'delete-content' content.id %}">
+                        remove</a>
+                </div>
+                </div>
+            </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
